@@ -1,13 +1,18 @@
-﻿#include <WiFi.h>
-#include "../lib/wifi_config/WifiConfig.h"
+﻿#include <ESP32Servo.h>
+#include "../lib/wifi/WifiConfig.h"
 #include "../lib/server/ServerConfig.h"
 
-
-const int ledPin = 2;
+constexpr int servoPin = GPIO_NUM_21;
+Servo myServo;
 
 void setup() {
-    startWiFi();
+    Serial.begin(115200);
+    connectWifi();
+    // startWiFi();
     startHttpServer();
+
+    myServo.attach(servoPin);
+    myServo.write(0);
 }
 
 void loop() {

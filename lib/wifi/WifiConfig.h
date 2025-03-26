@@ -7,4 +7,6 @@
 
 void startWiFi();
 
+void connectWifi();
+
 #endif //WIFICONFIG_H
