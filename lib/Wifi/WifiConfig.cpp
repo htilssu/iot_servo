@@ -1,8 +1,8 @@
 ﻿#include "WifiConfig.h"
 #include <WiFi.h>
 
-const char *ssid = "Thai Thanh";
-const char *password = "thaithanh2019";
+const char *ssid = "Huflit-GV";
+const char *password = "gvhuflit@123";
 constexpr int builtInLed = GPIO_NUM_2;
 
 WiFiClient client;
@@ -21,10 +21,10 @@ void startWiFi() {
     Serial.println(WiFi.softAPIP());
 }
 
-void connectWifi() {
+void connectWifi(const char &ssid, const char &password) {
     while (WiFiClass::status() != WL_CONNECTED) {
         Serial.println("Connecting to Wi-Fi network...");
-        WiFi.begin(ssid, password);
+        WiFi.begin();
         delay(1000);
     }
     Serial.println("Connected to Wi-Fi network");
@@ -32,5 +32,4 @@ void connectWifi() {
     Serial.println(WiFi.localIP());
     pinMode(builtInLed, OUTPUT);
     digitalWrite(builtInLed, HIGH);
-
 }

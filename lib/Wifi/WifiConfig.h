@@ -4,9 +4,10 @@
 
 #ifndef WIFICONFIG_H
 #define WIFICONFIG_H
+#include <string>
 
 void startWiFi();
 
-void connectWifi();
+void connectWifi(const char &ssid, const char &password);
 
 #endif //WIFICONFIG_H
