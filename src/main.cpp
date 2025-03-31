@@ -46,9 +46,10 @@ int current_light_state = LOW_LIGHT;
 int active_rotate = 0;
 
 // Hàm cập nhật trạng thái ánh sáng và gửi lên Blynk
-void updateLightState() {
+void update_blynk_state() {
     uint16_t analog_read = analogRead(LIGHT_SENSOR_PIN);
     Blynk.virtualWrite(V2, analog_read);
+    Blynk.virtualWrite(V3, servoPos);
 }
 
 // Hàm xử lý quay servo (CHỈ KHI ĐIỀU KHIỂN BẬT VÀ VÀO BAN NGÀY)
@@ -145,7 +146,7 @@ void setup() {
     timeClient.begin();
 
     // Cài đặt timer
-    timer.setInterval(5000L, updateLightState); // Cập nhật trạng thái ánh sáng mỗi 5 giây
+    timer.setInterval(5000L, update_blynk_state); // Cập nhật trạng thái ánh sáng mỗi 5 giây
     timer.setInterval(50L, handleRotateServo); // Điều khiển servo mỗi 50ms (Có thể tăng lên nếu servo giật)
 
     Blynk.virtualWrite(V0, 0); // Đặt giá trị mặc định cho V0 là OFF
